@@ -4,20 +4,20 @@ from torch.utils.ffi import create_extension
 
 this_file = os.path.dirname(__file__)
 
-sources = ['my_package/src/my_lib.c']
-headers = ['my_package/src/my_lib.h']
+sources = ['my_package/src/new_lib.c']
+headers = ['my_package/src/new_lib.h']
 defines = []
 with_cuda = False
 
 if torch.cuda.is_available():
     print('Including CUDA code.')
-    sources += ['my_package/src/my_lib_cuda.c']
-    headers += ['my_package/src/my_lib_cuda.h']
+    sources += ['my_package/src/new_lib_cuda.c']
+    headers += ['my_package/src/new_lib_cuda.h']
     defines += [('WITH_CUDA', None)]
     with_cuda = True
 
 ffi = create_extension(
-    'my_package._ext.my_lib',
+    'my_package._ext.new_lib',
     package=True,
     headers=headers,
     sources=sources,
